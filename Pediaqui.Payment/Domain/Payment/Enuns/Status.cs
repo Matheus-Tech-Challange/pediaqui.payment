@@ -29,4 +29,19 @@ public static class PaymentExtension
                 throw new ArgumentOutOfRangeException(nameof(paymentStatus));
         }
     }
+
+    public static string ToPaymentText(this Status paymentStatus)
+    {
+        switch (paymentStatus)
+        {
+            case Status.PENDING:
+                return nameof(Status.PENDING);
+            case Status.APPROVED:
+                return nameof(Status.APPROVED);
+            case Status.FAIL:
+                return nameof(Status.FAIL);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(paymentStatus));
+        }
+    }
 }

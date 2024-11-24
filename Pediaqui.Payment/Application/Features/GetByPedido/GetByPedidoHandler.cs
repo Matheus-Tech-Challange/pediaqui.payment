@@ -1,8 +1,9 @@
-﻿using Domain.Payment.Ports;
+﻿using Domain.Payment.Enuns;
+using Domain.Payment.Ports;
 
 namespace Application.Features.GetByPedido;
 
-public class GetByPedidoHandler : IRequestHandler<GetByPedidoRequest, PaymentResponse>
+public class GetByPedidoHandler : IRequestHandler<GetByPedidoRequest, string>
 {
     public readonly IPaymentRepository paymentRepository;
     public readonly NotificationContext notification;
@@ -18,9 +19,9 @@ public class GetByPedidoHandler : IRequestHandler<GetByPedidoRequest, PaymentRes
         this.paymentPresenter = paymentPresenter;
     }
 
-    public async Task<PaymentResponse> Handle(GetByPedidoRequest request, CancellationToken cancellationToken)
+    public async Task<string> Handle(GetByPedidoRequest request, CancellationToken cancellationToken)
     {
         var payment = await paymentRepository.GetByPedido(request.PedidoId);
-        return await paymentPresenter.ToPaymentResponse(payment);
+        return payment.Status.ToPaymentText();
     }
 }

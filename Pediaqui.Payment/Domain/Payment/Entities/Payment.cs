@@ -6,12 +6,12 @@ namespace Domain.Payment.Entities;
 
 public class Payment : Entity
 {
-    public Payment(int pedidoID, decimal valor)
+    public Payment(int pedidoId, decimal valor)
     {
         Guid = Guid.NewGuid();
         CreatedAt = DateTime.Now;
         Status = Status.PENDING;
-        PedidoId = pedidoID;
+        PedidoId = pedidoId;
         Valor = valor;
 
         Validar<Payment>(this, PaymentValidatorFactory.Create());

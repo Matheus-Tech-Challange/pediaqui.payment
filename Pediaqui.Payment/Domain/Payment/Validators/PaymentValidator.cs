@@ -20,13 +20,14 @@ public class PaymentValidator : IValidatorEntity<Entities.Payment>
     {
         public PaymentFluentValidator()
         {
-            RuleFor(p => p.Valor)
-                .GreaterThan(0)
-                .WithMessage("Valor do pagamento não pode ser zero.");
 
             RuleFor(p => p.PedidoId)
                 .NotNull()
                 .WithMessage("Número do pedido é obrigatório.");
+
+            RuleFor(p => p.Valor)
+                .GreaterThan(0)
+                .WithMessage("Valor do pagamento não pode ser zero.");
         }
     }
 }

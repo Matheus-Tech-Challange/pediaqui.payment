@@ -6,4 +6,5 @@ public interface IPaymentRepository
 {
     public Task<Guid> Create(Entities.Payment payment);
     public Task<Entities.Payment> GetByPedido(int pedidoId);
+    public Task<Entities.Payment> MarkAsPaid(string paymentID);
 }

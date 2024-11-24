@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Pediaqui.Order\Pediaqui.Order.csproj" />
   </ItemGroup>
 
 </Project>
