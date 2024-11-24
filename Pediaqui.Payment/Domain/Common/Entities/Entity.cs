@@ -1,10 +1,13 @@
 ﻿using Domain.Common.Ports;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Common.Entities;
 
 public abstract class Entity
 {
-    public int Id { get; private set; }
+    [BsonId]
+    public ObjectId Id { get; private set; }
     public bool Valid { get; private set; }
     public bool Invalid => !Valid;
 

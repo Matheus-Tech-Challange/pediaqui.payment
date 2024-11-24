@@ -19,7 +19,8 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(xmlPath);
 });
 
-builder.Services.AddInfraData(builder.Configuration);
+var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
+builder.Services.AddInfraData(mongoDBSettings!);
 builder.Services.AddApplication(builder.Configuration);
 
 var app = builder.Build();
@@ -36,11 +37,4 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 app.MapControllers();
-
-using (var serviceScope = app.Services.CreateScope())
-{
-    var dbContext = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
-    dbContext.Database.Migrate();
-}
-
 app.Run();

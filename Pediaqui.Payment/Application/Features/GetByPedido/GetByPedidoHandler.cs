@@ -22,6 +22,13 @@ public class GetByPedidoHandler : IRequestHandler<GetByPedidoRequest, string>
     public async Task<string> Handle(GetByPedidoRequest request, CancellationToken cancellationToken)
     {
         var payment = await paymentRepository.GetByPedido(request.PedidoId);
+
+        if (payment == null)
+        {
+            notification.AddNotification("Pedido não encontrado", "Nenhum pagamento encontrado para o pedido informado.");
+            return null!;
+        }
+
         return payment.Status.ToPaymentText();
     }
 }

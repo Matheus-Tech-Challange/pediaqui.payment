@@ -8,7 +8,7 @@ public class Payment : Entity
 {
     public Payment(int pedidoId, decimal valor)
     {
-        Guid = Guid.NewGuid();
+        PaymentId = Guid.NewGuid();
         CreatedAt = DateTime.Now;
         Status = Status.PENDING;
         PedidoId = pedidoId;
@@ -17,7 +17,7 @@ public class Payment : Entity
         Validar<Payment>(this, PaymentValidatorFactory.Create());
     }
 
-    public Guid Guid { get; set; }
+    public Guid PaymentId { get; set; }
     public DateTime CreatedAt { get; set; }
     public Status Status { get; set; }
     public int PedidoId { get; set; }
